@@ -1,0 +1,36 @@
+name: Build Skills Index
+
+# 在 skill-collection 自身提交后重新生成 skills.json（注册表），供 guoxin.space 运行时静态读取。
+# 触发：push main（collect/remove 经 Worker 提交后自动重建）、手动 workflow_dispatch。
+# 仅当 skills.json 内容变化时才提交，避免「提交 → 重建 → 再提交」死循环。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+      - name: Generate skills.json
+        run: node tools/build-index.mjs
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add skills.json
+          if git diff --cached --quiet; then
+            echo "skills.json unchanged"
+          else
+            git commit -m "chore: regenerate skills.json"
+            git push
+          fi

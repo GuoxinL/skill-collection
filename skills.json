@@ -1,0 +1,25 @@
+{
+  "repo": "GuoxinL/skill-collection",
+  "branch": "main",
+  "generatedAt": "2026-09-20T11:50:26.656Z",
+  "rows": [
+    {
+      "dir": "fav-brainstorming",
+      "name": "brainstorming",
+      "description": "在任何创造性工作之前必须使用此技能——创建功能、构建组件、添加功能或修改行为。在实现之前先探索用户意图、需求和设计。",
+      "mode": "proxy",
+      "source": "https://github.com/jnMetaCode/superpowers-zh/tree/main/skills/brainstorming",
+      "sourceOwner": "jnMetaCode",
+      "icon": null
+    },
+    {
+      "dir": "fav-subagent-driven-development",
+      "name": "subagent-driven-development",
+      "description": "当在当前会话中执行包含独立任务的实现计划时使用",
+      "mode": "mirror",
+      "source": "https://github.com/jnMetaCode/superpowers-zh/tree/main/skills/subagent-driven-development",
+      "sourceOwner": "jnMetaCode",
+      "icon": null
+    }
+  ]
+}
